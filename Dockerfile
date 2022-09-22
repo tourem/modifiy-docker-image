@@ -4,8 +4,8 @@ ENV SPRING_CONFIG_ADDITIONAL_LOCATION /applis/config/
 # ARTIFACT, GITBRANCH et GITCOMMIT seront surchargés au moment du build
 # Laisser ces valeurs par défaut
 
-ARG ARTIFACT=rdb-ap27085-event-replicator-*-spring-boot.jar
-ARG FINALARTIFACTNAME=rdb-ap27085-event-replicator.jar
+ARG ARTIFACT=*.jar
+ARG FINALARTIFACTNAME=application.jar
 ARG GITBRANCH=master
 ARG GITCOMMIT=0000000
 
@@ -13,7 +13,7 @@ ARG PUID=1024
 ARG PGID=1024
 
 LABEL maintainer=larbotech@gmail.com
-LABEL description="AP27085 EVENT REPLICATOR"
+LABEL description="akhq"
 
 #1083.48.   Labels for Docker image (Best practice)
 LABEL codetype=java
