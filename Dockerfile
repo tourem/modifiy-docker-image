@@ -12,8 +12,7 @@ ARG GITCOMMIT=0000000
 ARG PUID=1024
 ARG PGID=1024
 
-#1083.47.   Labels for Docker image (mandatory)
-LABEL maintainer=mlist_paris_itg_rdb_dna_all@bnpparibas.com
+LABEL maintainer=larbotech@gmail.com
 LABEL description="AP27085 EVENT REPLICATOR"
 
 #1083.48.   Labels for Docker image (Best practice)
@@ -33,18 +32,10 @@ RUN useradd -u $PUID -g $PGID -c "add app user" -M app
 
 RUN mkdir -p ./config ./tmp ./security
 
-
-# Il faut pas monter les volumes Docker. Les volumes Docker ne fonctionne pas dans paas V4. Les volumes seront monter dans Kubernetes.
-# VOLUME ./config ./tmp ./security : a ne pas mettre.
-
 COPY target/$ARTIFACT $FINALARTIFACTNAME
 COPY ./entrypoint.sh entrypoint.sh
-COPY ./target/classes/bnpp-truststore.jks bnpp-truststore.jks
-COPY ./target/classes/ap12583-itr-v360-client-dev.jks ap12583-itr-v360-client-dev.jks
-COPY ./target/classes/certificat.crt certificat.crt
 RUN chmod +x entrypoint.sh
 RUN chown -R $PUID:$PGID .
-RUN $JAVA_HOME/bin/keytool -cacerts -import -alias kafkacertificat -file /applis/certificat.crt -storepass changeit -noprompt
 
 #1066.15.   « DockerFile » USER
 USER $PUID
