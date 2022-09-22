@@ -1,4 +1,4 @@
-FROM crm-nexus.itg.echonet/bp2i-images/openjdk11:0.6-1
+FROM openjdk11:0.6-1
 ENV SPRING_CONFIG_ADDITIONAL_LOCATION /applis/config/
 
 # ARTIFACT, GITBRANCH et GITCOMMIT seront surchargés au moment du build
